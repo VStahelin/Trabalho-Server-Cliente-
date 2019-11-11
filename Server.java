@@ -64,8 +64,8 @@ class NetworkManager {
     public String streamManager(Socket socket, String treatment) throws IOException, ClassNotFoundException {
         String result = "Message";
         Math math = new Math();
-        ObjectInputStream input = new ObjectInputStream(socket.getInputStream());       //data input
         ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());   //data output
+        ObjectInputStream input = new ObjectInputStream(socket.getInputStream());       //data input
         
         try{
             switch (treatment) {
@@ -95,8 +95,8 @@ class NetworkManager {
         }
 
         //Closing data transfer path
-        input.close();  
         output.close();
+        input.close();  
         return result;
     }
     
@@ -112,12 +112,12 @@ class Math {
 	public String finalGradeVerification(Float grade) throws IOException, ClassNotFoundException  {
         String message;
         grade = 12 - grade;
-        if (grade < 2){
+        if (grade > 10){
             message = "You have already failed";    
-        } else if (grade >= 2 && grade >6 ) {
-            message = "You need to take " + grade + " o complete this course";
-        } else {
+        } else if (grade <= 5 ) {
             message = "You have completed this course";
+        } else {
+            message = "You need to take " + grade + " o complete this course";
         }
         return message;
 	}
